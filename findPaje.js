@@ -35,13 +35,17 @@ export function parsePaje(record) {
 	// 5 'DOSCOURRNDPWEB',
 	// 6 '9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ]
 
-	var dateAsString = record[1],
-		timeAsString = record[2],
+	var dateParts = record[1].split('/'),
+		timeParts = record[2].split(':'),
 		sousRubrique = record[5],
 		matricule = record[6];
 
 	if (sousRubrique == 'PAJALLWEB') {
+		return {
+			type: 'paje',
+			status: 'start',
+			date: new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]),
+			user: matricule
+		}
 	}
-
-	return
 }

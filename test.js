@@ -37,7 +37,7 @@ describe('paje simulations', () => {
 	});
 
 	it('should give the simulation date', () => {
-		expect(subject.date).to.eql(new Date('2014-07-01T10:02:55'));
+		expect(subject.date).to.eql(new Date(2014, 6, 1, 10, 2, 55));
 	});
 
 	it('should give the user identifier', () => {
