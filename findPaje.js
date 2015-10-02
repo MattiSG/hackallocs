@@ -43,3 +43,15 @@ export function parsePaje(record) {
 		}
 	}
 }
+
+let buffer = {};
+export function handleSimulationEvent(event) {
+	if (event.type == 'start') {
+		buffer[event.user] = event.date;
+	} else {
+		let result = event.date - buffer[event.user];
+		delete buffer[event.user];
+		return result;
+	}
+
+}
