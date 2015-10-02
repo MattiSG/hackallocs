@@ -1,6 +1,6 @@
 import expect from 'expect.js';
 
-import { parsePaje } from './findPaje';
+import { parsePaje, handleSimulationEvent } from './findPaje';
 
 
 describe('non simulations', () => {
@@ -72,5 +72,32 @@ describe('simulations', () => {
 		it('should give the simulation status', () => {
 			expect(parsePaje(RECORD).status).to.be('end');
 		});
+	});
+});
+
+describe('time diff', () => {
+	const START = {
+		type: 'paje',
+		status: 'start',
+		user: 'toto',
+		date: new Date()
+	};
+	const END = {
+		type: 'paje',
+		status: 'end',
+		user: 'toto',
+		date: new Date()
+	};
+
+	it('should return nothing on a first end', () => {
+		expect(handleSimulationEvent(END)).to.not.be.ok();
+	});
+
+	it('should return nothing on a first start', () => {
+		expect(handleSimulationEvent(START)).to.not.be.ok();
+	});
+
+	it('should return a time diff on a first matching end', () => {
+		expect(handleSimulationEvent(END)).to.be.a('number');
 	});
 });
