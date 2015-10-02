@@ -13,7 +13,14 @@ fs.createReadStream('sample.csv')
 		delimiter: ';',
 		auto_parse: true,
 	}))
-	.pipe(csv.transform(parsePaje))
+	.pipe(csv.transform((record) => {
+		let paje = parsePaje(record);
+
+		if (paje) {
+			pajeSimulations[matricule] = pajeSimulations[matricule] || { starts: [], ends: [] };
+			pajeSimulations[matricule].starts.push(dateAsString + timeAsString);
+		}
+	}))
 	.pipe(csv.stringify())
 	.pipe(process.stdout);
 
@@ -34,7 +41,7 @@ export function parsePaje(record) {
 		matricule = record[6];
 
 	if (sousRubrique == 'PAJALLWEB') {
-		pajeSimulations[matricule].starts = pajeSimulations[matricule].starts || [];
-		pajeSimulations[matricule].starts.push(dateAsString + timeAsString);
 	}
+
+	return
 }
