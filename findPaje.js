@@ -34,10 +34,10 @@ export function parsePaje(record) {
 		sousRubrique = record[5],
 		matricule = record[6];
 
-	if (sousRubrique == 'PAJALLWEB') {
+	if (sousRubrique == 'PAJALLWEB' || sousRubrique == 'PAJRESUWEB') {
 		return {
 			type: 'paje',
-			status: 'start',
+			status: sousRubrique == 'PAJALLWEB' ? 'start' : 'end',
 			date: new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]),
 			user: matricule
 		}
