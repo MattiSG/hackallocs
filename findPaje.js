@@ -32,6 +32,7 @@ export function parsePaje(record) {
 
 	var dateParts = record[1].split('/'),
 		timeParts = record[2].split(':'),
+		ip = record[3],
 		sousRubrique = record[5],
 		matricule = record[6];
 
