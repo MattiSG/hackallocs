@@ -18,33 +18,66 @@ describe('non-paje simulations', () => {
 });
 
 describe('paje simulations', () => {
-	const RECORD = [ 441,
-		'01/07/2014',
-		'10:02:55',
-		'81.50.X.X',
-		'DOSWEB',
-		'PAJALLWEB',
-		'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
+	describe('starts', () => {
+		const RECORD = [ 441,
+			'01/07/2014',
+			'10:02:55',
+			'81.50.X.X',
+			'DOSWEB',
+			'PAJALLWEB',
+			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
 
-	let subject = parsePaje(RECORD);
+		let subject = parsePaje(RECORD);
 
-	it('should return an object', () => {
-		expect(subject).to.be.an('object');
-	});
+		it('should return an object', () => {
+			expect(subject).to.be.an('object');
+		});
 
-	it('should give the simulation type', () => {
-		expect(subject.type).to.be('paje');
-	});
+		it('should give the simulation type', () => {
+			expect(subject.type).to.be('paje');
+		});
 
-	it('should give the simulation date', () => {
-		expect(subject.date).to.eql(new Date(2014, 6, 1, 10, 2, 55));
-	});
+		it('should give the simulation date', () => {
+			expect(subject.date).to.eql(new Date(2014, 6, 1, 10, 2, 55));
+		});
 
-	it('should give the user identifier', () => {
-		expect(subject.user).to.be('9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6');
-	});
+		it('should give the user identifier', () => {
+			expect(subject.user).to.be('9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6');
+		});
 
-	it('should give the simulation status', () => {
-		expect(subject.status).to.be('start');
+		it('should give the simulation status', () => {
+			expect(subject.status).to.be('start');
+		});
+	})
+	describe('ends', () => {
+		const RECORD = [ 441,
+			'01/07/2014',
+			'10:02:55',
+			'81.50.X.X',
+			'DOSWEB',
+			'PAJRESUWEB',
+			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
+
+		let subject = parsePaje(RECORD);
+
+		it('should return an object', () => {
+			expect(subject).to.be.an('object');
+		});
+
+		it('should give the simulation type', () => {
+			expect(subject.type).to.be('paje');
+		});
+
+		it('should give the simulation date', () => {
+			expect(subject.date).to.eql(new Date(2014, 6, 1, 10, 2, 55));
+		});
+
+		it('should give the user identifier', () => {
+			expect(subject.user).to.be('9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6');
+		});
+
+		it('should give the simulation status', () => {
+			expect(subject.status).to.be('end');
+		});
 	});
 });
