@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import csv from 'csv';
+import JSONStream from 'jsonstream';
 
 
 var pajeSimulations = {
@@ -13,15 +14,8 @@ fs.createReadStream('sample.csv')
 		delimiter: ';',
 		auto_parse: true,
 	}))
-	.pipe(csv.transform((record) => {
-		let paje = parsePaje(record);
-
-		if (paje) {
-			pajeSimulations[matricule] = pajeSimulations[matricule] || { starts: [], ends: [] };
-			pajeSimulations[matricule].starts.push(dateAsString + timeAsString);
-		}
-	}))
-	.pipe(csv.stringify())
+	.pipe(csv.transform(parsePaje))
+	.pipe(JSONStream.stringify())
 	.pipe(process.stdout);
 
 
