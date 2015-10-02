@@ -98,6 +98,8 @@ describe('time diff', () => {
 	});
 
 	it('should return a time diff on a first matching end', () => {
-		expect(handleSimulationEvent(END)).to.be.a('number');
+		let subject = handleSimulationEvent(END);
+		expect(subject).to.be.a('number');
+		expect(Number.isNaN(subject)).to.be(false);
 	});
 });

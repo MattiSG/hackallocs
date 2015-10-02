@@ -15,6 +15,7 @@ fs.createReadStream('sample.csv')
 		auto_parse: true,
 	}))
 	.pipe(csv.transform(parsePaje))
+	.pipe(csv.transform(handleSimulationEvent))
 	.pipe(JSONStream.stringify())
 	.pipe(process.stdout);
 
@@ -45,8 +46,9 @@ export function parsePaje(record) {
 }
 
 let buffer = {};
+
 export function handleSimulationEvent(event) {
-	if (event.type == 'start') {
+	if (event.status == 'start') {
 		buffer[event.user] = event.date;
 	} else {
 		let result = event.date - buffer[event.user];
