@@ -73,6 +73,43 @@ describe('simulations', () => {
 			expect(parseSimulation(RECORD).status).to.be('end');
 		});
 	});
+
+
+	describe('rsa start', () => {
+		const RECORD = [ 441,
+			'01/07/2014',
+			'10:02:55',
+			'81.50.X.X',
+			'DOSWEB',
+			'ACCRSAIDWEB',
+			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
+
+		it('should give the simulation type', () => {
+			expect(parseSimulation(RECORD).type).to.be('rsa');
+		});
+
+		it('should give the simulation status', () => {
+			expect(parseSimulation(RECORD).status).to.be('start');
+		});
+	});
+
+	describe('rsa alternate start', () => {
+		const RECORD = [ 441,
+			'01/07/2014',
+			'10:02:55',
+			'81.50.X.X',
+			'DOSWEB',
+			'ACCRSAWEB',
+			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
+
+		it('should give the simulation type', () => {
+			expect(parseSimulation(RECORD).type).to.be('rsa');
+		});
+
+		it('should give the simulation status', () => {
+			expect(parseSimulation(RECORD).status).to.be('start');
+		});
+	});
 });
 
 describe('time diff', () => {

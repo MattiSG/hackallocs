@@ -15,6 +15,12 @@ fs.createReadStream('sample.csv')
 	.pipe(JSONStream.stringify('[', ',', ']'))
 	.pipe(fs.createWriteStream('paje.json'));
 
+const TYPES = {
+	ACCRSAIDWEB: 'rsa',
+	ACCRSAWEB: 'rsa',
+	PAJALLWEB: 'paje',
+	PAJRESUWEB: 'paje',
+}
 
 export function parseSimulation(record) {
 	// Sample record:
@@ -26,10 +32,10 @@ export function parseSimulation(record) {
 		sousRubrique = record[5],  // 'DOSCOURRNDPWEB',
 		matricule = record[6];  // '9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ]
 
-	if (sousRubrique == 'PAJALLWEB' || sousRubrique == 'PAJRESUWEB') {
+	if (sousRubrique in TYPES) {
 		return {
-			type: 'paje',
-			status: sousRubrique == 'PAJALLWEB' ? 'start' : 'end',
+			type: TYPES[sousRubrique],
+			status: sousRubrique == 'PAJRESUWEB' ? 'end' : 'start',
 			date: new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]),
 			user: matricule
 		}
