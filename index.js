@@ -9,14 +9,14 @@ fs.createReadStream('sample.csv')
 		delimiter: ';',
 		auto_parse: true,
 	}))
-	.pipe(csv.transform(parsePaje))
+	.pipe(csv.transform(parseSimulation))
 	.pipe(csv.transform(handleSimulationEvent))
 	.pipe(csv.transform(lowPassFilter(60 * 60 * 1000)))
 	.pipe(JSONStream.stringify('[', ',', ']'))
 	.pipe(fs.createWriteStream('paje.json'));
 
 
-export function parsePaje(record) {
+export function parseSimulation(record) {
 	// Sample record:
 	var cafId = record[0], // [ 441,
 		dateParts = record[1].split('/'),  // '01/07/2014',

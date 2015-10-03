@@ -1,6 +1,6 @@
 import expect from 'expect.js';
 
-import { parsePaje, handleSimulationEvent } from './findPaje';
+import { parseSimulation, handleSimulationEvent } from './findPaje';
 
 
 describe('non simulations', () => {
@@ -13,7 +13,7 @@ describe('non simulations', () => {
 		'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
 
 	it('should be ignored', () => {
-		expect(parsePaje(RECORD)).to.not.be.ok();
+		expect(parseSimulation(RECORD)).to.not.be.ok();
 	});
 });
 
@@ -27,15 +27,15 @@ describe('simulations', () => {
 		'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
 
 	it('should return an object', () => {
-		expect(parsePaje(RECORD)).to.be.an('object');
+		expect(parseSimulation(RECORD)).to.be.an('object');
 	});
 
 	it('should give the simulation date', () => {
-		expect(parsePaje(RECORD).date).to.eql(new Date(2014, 6, 1, 10, 2, 55));
+		expect(parseSimulation(RECORD).date).to.eql(new Date(2014, 6, 1, 10, 2, 55));
 	});
 
 	it('should give the user identifier', () => {
-		expect(parsePaje(RECORD).user).to.be('9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6');
+		expect(parseSimulation(RECORD).user).to.be('9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6');
 	});
 
 	describe('paje start', () => {
@@ -48,11 +48,11 @@ describe('simulations', () => {
 			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
 
 		it('should give the simulation type', () => {
-			expect(parsePaje(RECORD).type).to.be('paje');
+			expect(parseSimulation(RECORD).type).to.be('paje');
 		});
 
 		it('should give the simulation status', () => {
-			expect(parsePaje(RECORD).status).to.be('start');
+			expect(parseSimulation(RECORD).status).to.be('start');
 		});
 	});
 
@@ -66,11 +66,11 @@ describe('simulations', () => {
 			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
 
 		it('should give the simulation type', () => {
-			expect(parsePaje(RECORD).type).to.be('paje');
+			expect(parseSimulation(RECORD).type).to.be('paje');
 		});
 
 		it('should give the simulation status', () => {
-			expect(parsePaje(RECORD).status).to.be('end');
+			expect(parseSimulation(RECORD).status).to.be('end');
 		});
 	});
 });
