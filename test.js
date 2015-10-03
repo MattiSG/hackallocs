@@ -1,6 +1,6 @@
 import expect from 'expect.js';
 
-import { parseSimulation, handleSimulationEvent } from './findPaje';
+import { parseSimulation, handleSimulationEvent } from './index';
 
 
 describe('non simulations', () => {
