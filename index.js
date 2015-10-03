@@ -6,7 +6,7 @@ import JSONStream from 'jsonstream';
 import { lowPassFilter, parseSimulation, handleSimulationOfType } from './simulation';
 
 
-fs.createReadStream('sample.csv')
+fs.createReadStream('web0315.csv')
 	.pipe(csv.parse({
 		delimiter: ';',
 		auto_parse: true,
