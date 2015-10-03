@@ -11,6 +11,7 @@ fs.createReadStream('sample.csv')
 	}))
 	.pipe(csv.transform(parsePaje))
 	.pipe(csv.transform(handleSimulationEvent))
+	.pipe(csv.transform(lowPassFilter(60 * 60 * 1000)))
 	.pipe(JSONStream.stringify('[', ',', ']'))
 	.pipe(fs.createWriteStream('paje.json'));
 
@@ -44,6 +45,17 @@ export function handleSimulationEvent(event) {
 		let result = event.date - buffer[event.user];
 		delete buffer[event.user];
 		return result;
+	}
+}
+
+export function lowPassFilter(limit) {
+	return function(value) {
+		if (value > limit) {
+			console.log(`Dropped ${value} (higher than ${limit})`);
+			return;
+		}
+
+		return value;
 	}
 
 }
