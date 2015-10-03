@@ -25,4 +25,4 @@ Les données ne sont pas fournies dans ce dépôt, et ne sont à l'heure de réd
 Licence
 -------
 
-WTFPL. Code de hackathon, quoi.
+[WTFPL](http://www.wtfpl.net/txt/copying/). Code de hackathon, quoi.
