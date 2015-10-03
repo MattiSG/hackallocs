@@ -4,11 +4,6 @@ import csv from 'csv';
 import JSONStream from 'jsonstream';
 
 
-var pajeSimulations = {
-	// <MATRICULE>: { starts: [], ends: [] }
-}
-
-
 fs.createReadStream('sample.csv')
 	.pipe(csv.parse({
 		delimiter: ';',
@@ -21,20 +16,14 @@ fs.createReadStream('sample.csv')
 
 
 export function parsePaje(record) {
-	// sample record:
-	// 0 [ 441,
-	// 1 '01/07/2014',
-	// 2 '10:02:55',
-	// 3 '81.50.X.X',
-	// 4 'DOSWEB',
-	// 5 'DOSCOURRNDPWEB',
-	// 6 '9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ]
-
-	var dateParts = record[1].split('/'),
-		timeParts = record[2].split(':'),
-		ip = record[3],
-		sousRubrique = record[5],
-		matricule = record[6];
+	// Sample record:
+	var cafId = record[0], // [ 441,
+		dateParts = record[1].split('/'),  // '01/07/2014',
+		timeParts = record[2].split(':'),  // '10:02:55',
+		ip = record[3],  // '81.50.X.X',
+		rubrique = record[4], // 'DOSWEB',
+		sousRubrique = record[5],  // 'DOSCOURRNDPWEB',
+		matricule = record[6];  // '9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ]
 
 	if (sousRubrique == 'PAJALLWEB' || sousRubrique == 'PAJRESUWEB') {
 		return {
