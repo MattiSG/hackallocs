@@ -11,7 +11,7 @@ fs.createReadStream('sample.csv')
 	}))
 	.pipe(csv.transform(parsePaje))
 	.pipe(csv.transform(handleSimulationEvent))
-	.pipe(JSONStream.stringify())
+	.pipe(JSONStream.stringify('[', ',', ']'))
 	.pipe(fs.createWriteStream('paje.json'));
 
 
