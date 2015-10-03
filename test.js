@@ -80,21 +80,21 @@ describe('time diff', () => {
 		type: 'paje',
 		status: 'start',
 		user: 'toto',
-		date: new Date()
+		date: new Date(2015, 6, 1, 12, 12)
 	};
 	const END = {
 		type: 'paje',
 		status: 'end',
 		user: 'toto',
-		date: new Date()
+		date: new Date(2015, 6, 1, 12, 21)
 	};
 
 	it('should return nothing on a first end', () => {
-		expect(handleSimulationEvent(END)).to.not.be.ok();
+		expect(handleSimulationEvent(END)).to.be(undefined);
 	});
 
 	it('should return nothing on a first start', () => {
-		expect(handleSimulationEvent(START)).to.not.be.ok();
+		expect(handleSimulationEvent(START)).to.be(undefined);
 	});
 
 	it('should return a time diff on a first matching end', () => {

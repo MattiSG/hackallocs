@@ -44,7 +44,7 @@ export function handleSimulationEvent(event) {
 	} else {
 		let result = event.date - buffer[event.user];
 		delete buffer[event.user];
-		return result;
+		return result || undefined;  // filter out NaN and 0
 	}
 }
 
