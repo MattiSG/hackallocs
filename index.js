@@ -45,6 +45,8 @@ export function parseSimulation(record) {
 let buffer = {};
 
 export function handleSimulationEvent(event) {
+	console.log(`${event.type}:${event.status}`);
+
 	if (event.status == 'start') {
 		buffer[event.user] = event.date;
 	} else {
