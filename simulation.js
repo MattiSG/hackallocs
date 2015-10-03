@@ -27,16 +27,27 @@ export function parseSimulation(record) {
 	}
 }
 
-let buffer = {};
+let buffer = {
+	al: {},
+	paje: {},
+	rsa: {},
+};
+
+export function handleSimulationOfType(type) {
+	return function(event) {
+		if (event.type == type)
+			return handleSimulationEvent(event);
+	}
+}
 
 export function handleSimulationEvent(event) {
 	console.log(`${event.type}:${event.status}`);
 
 	if (event.status == 'start') {
-		buffer[event.user] = event.date;
+		buffer[event.type][event.user] = event.date;
 	} else {
-		let result = event.date - buffer[event.user];
-		delete buffer[event.user];
+		let result = event.date - buffer[event.type][event.user];
+		delete buffer[event.type][event.user];
 		return result || undefined;  // filter out NaN and 0
 	}
 }
