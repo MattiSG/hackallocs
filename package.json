@@ -1,6 +1,14 @@
 {
   "description": "A visualizer for French CNAF websites simulation duration data",
   "license": "WTFPL",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/MattiSG/hackallocs.git"
+  },
+  "contributors": [
+    "Matti Schneider <matti.schneider@data.gouv.fr>",
+    "Florian Pagnoux <florian.pagnoux@data.gouv.fr>"
+  ],
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha --compilers js:babel/register"
