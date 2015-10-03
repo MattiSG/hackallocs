@@ -3,6 +3,8 @@ const TYPES = {
 	ACCRSAWEB: 'rsa',
 	PAJALLWEB: 'paje',
 	PAJRESUWEB: 'paje',
+	SIMLOGWEB: 'al',
+	SIMRESLOGWEB: 'al',
 }
 
 export function parseSimulation(record) {
@@ -18,7 +20,7 @@ export function parseSimulation(record) {
 	if (sousRubrique in TYPES) {
 		return {
 			type: TYPES[sousRubrique],
-			status: sousRubrique == 'PAJRESUWEB' ? 'end' : 'start',
+			status: sousRubrique.indexOf('RES') > -1 ? 'end' : 'start',
 			date: new Date(dateParts[2], dateParts[1] - 1, dateParts[0], timeParts[0], timeParts[1], timeParts[2]),
 			user: matricule
 		}

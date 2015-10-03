@@ -74,7 +74,6 @@ describe('simulations', () => {
 		});
 	});
 
-
 	describe('rsa start', () => {
 		const RECORD = [ 441,
 			'01/07/2014',
@@ -108,6 +107,42 @@ describe('simulations', () => {
 
 		it('should give the simulation status', () => {
 			expect(parseSimulation(RECORD).status).to.be('start');
+		});
+	});
+
+	describe('al start', () => {
+		const RECORD = [ 441,
+			'01/07/2014',
+			'10:02:55',
+			'81.50.X.X',
+			'DOSWEB',
+			'SIMLOGWEB',
+			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
+
+		it('should give the simulation type', () => {
+			expect(parseSimulation(RECORD).type).to.be('al');
+		});
+
+		it('should give the simulation status', () => {
+			expect(parseSimulation(RECORD).status).to.be('start');
+		});
+	});
+
+	describe('al ends', () => {
+		const RECORD = [ 441,
+			'01/07/2014',
+			'10:02:55',
+			'81.50.X.X',
+			'DOSWEB',
+			'SIMRESLOGWEB',
+			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
+
+		it('should give the simulation type', () => {
+			expect(parseSimulation(RECORD).type).to.be('al');
+		});
+
+		it('should give the simulation status', () => {
+			expect(parseSimulation(RECORD).status).to.be('end');
 		});
 	});
 });
