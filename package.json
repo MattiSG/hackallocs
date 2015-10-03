@@ -2,7 +2,7 @@
   "description": "A visualizer for French CNAF websites simulation duration data",
   "license": "WTFPL",
   "scripts": {
-    "start": "babel-node findPaje.js",
+    "start": "babel-node index.js",
     "test": "mocha --compilers js:babel/register"
   },
   "dependencies": {
