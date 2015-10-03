@@ -12,7 +12,7 @@ fs.createReadStream('sample.csv')
 	.pipe(csv.transform(parsePaje))
 	.pipe(csv.transform(handleSimulationEvent))
 	.pipe(JSONStream.stringify())
-	.pipe(process.stdout);
+	.pipe(fs.createWriteStream('paje.json'));
 
 
 export function parsePaje(record) {
