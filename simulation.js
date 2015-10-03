@@ -3,7 +3,7 @@ const TYPES = {
 	ACCRSAWEB: 'rsa',
 	PAJALLWEB: 'paje',
 	PAJRESUWEB: 'paje',
-	SIMLOGWEB: 'al',
+	ACCSIMWEB: 'al',
 	SIMRESLOGWEB: 'al',
 }
 

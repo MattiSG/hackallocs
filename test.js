@@ -116,7 +116,7 @@ describe('simulations', () => {
 			'10:02:55',
 			'81.50.X.X',
 			'DOSWEB',
-			'SIMLOGWEB',
+			'ACCSIMWEB',
 			'9462cdb3cb9c194bdfe925c5628cc9222bc846950888f7d5db2e1832fd54aff6' ];
 
 		it('should give the simulation type', () => {
