@@ -17,7 +17,7 @@ function drawHistogram(id) {
 			(values);
 
 		var y = d3.scale.linear()
-			.domain([ 0, values.length / 2 ])
+			.domain([ 0, values.length / 3 ])
 			.range([ height, 0 ]);
 
 		var xAxis = d3.svg.axis()
